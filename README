@@ -9,10 +9,26 @@ The dissertation is not included due to copyright reasons.
 
 Requirements:
 * PHP 5, see section 1 below.
-* TeXLive (or any other recent TeX distribution)
+* TeXLive (or any other recent TeX distribution), see section 1 below.
 * pdftk (the pdf toolkit), version 1.43 or greater, see section 1 below.
 * A specific PDF version of the dissertation, see section 2 below.
 * A patched version of pdftotext (part of poppler), see section 3 below.
+
+
+Acknowledgements:
+
+Thanks to marcusb for writing the original code (which was for Karl-Theodor
+zu Guttenberg's dissertation back then). skm-overlay.php builds heavily on
+those ideas, the structure and (to some extent) the code.
+See <http://de.guttenplag.wikia.com/wiki/Benutzer:Marcusb/OverlayPDF>.
+
+Thanks to fiesh for writing the original version of FragmentLoader.php, and
+to various contributors for getting it to its current feature set.
+See <https://github.com/fiesh/gut-ab/commits/master> for a version history.
+
+Also, many thanks to the countless contributors on VroniPlag Wiki
+and on IRC for documenting and making public yet another egregious case
+of plagiarism.
 
 
 -------------------------------------------------------------------
