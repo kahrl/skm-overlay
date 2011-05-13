@@ -36,20 +36,20 @@ of plagiarism.
 Section 1. Installing required dependencies
 
 
-Make sure PHP 5 <http://php.net>, TeXLive and
-pdftk >= 1.43 <http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/>
+Make sure PHP 5 <http://php.net/>, TeXLive <http://www.tug.org/texlive/>
+and pdftk >= 1.43 <http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/>
 are installed.
 
 
 -------------------------------------------------------------------
 
-Section 2. The dissertation.
+Section 2. The dissertation
 
 
 Since the dissertation cannot be freely distributed (even if it
-obviously is not original content), you must somehow obtain a copy
-(e.g. by scanning it in a library). Ask in #vroniplag on irc.freenode.net
-if your PDF copy is suitable for this overlay generator.
+obviously is not original content, at least in parts), you must somehow
+obtain a copy (e.g. by scanning it in a library). Ask in #vroniplag on
+irc.freenode.net if your PDF copy is suitable for this overlay generator.
 
 In particular, one PDF file that is suitable has the following MD5 sum:
 5b338b91ab80708008491fa21574063f
