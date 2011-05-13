@@ -1,0 +1,117 @@
+This tool takes as input a (specific) PDF version of Silvana
+Koch-Mehrin's dissertation "Historische Währungsunion zwischen
+Wirtschaft und Politik" and creates an overlay PDF that shows
+plagiarized text passages and their actual sources according to
+the VroniPlag Wiki <http://de.vroniplag.wikia.com/>.
+
+The dissertation is not included due to copyright reasons.
+
+
+Requirements:
+* PHP 5, see section 1 below.
+* TeXLive (or any other recent TeX distribution)
+* pdftk (the pdf toolkit), version 1.43 or greater, see section 1 below.
+* A specific PDF version of the dissertation, see section 2 below.
+* A patched version of pdftotext (part of poppler), see section 3 below.
+
+
+-------------------------------------------------------------------
+
+Section 1. Installing required dependencies
+
+
+Make sure PHP 5 <http://php.net>, TeXLive and
+pdftk >= 1.43 <http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/>
+are installed.
+
+
+-------------------------------------------------------------------
+
+Section 2. The dissertation.
+
+
+Since the dissertation cannot be freely distributed (even if it
+obviously is not original content), you must somehow obtain a copy
+(e.g. by scanning it in a library). Ask in #vroniplag on irc.freenode.net
+if your PDF copy is suitable for this overlay generator.
+
+In particular, one PDF file that is suitable has the following MD5 sum:
+5b338b91ab80708008491fa21574063f
+
+Once you've got the PDF, store it in the skm-overlay source directory
+and call it Koch-Mehrin.pdf.
+
+
+-------------------------------------------------------------------
+
+Section 3. pdftotext
+
+
+A special patched version of pdftotext (part of the poppler package)
+is needed. The patch adds support for XML output and extended bounding
+box output. A patch for version 0.16.5 of poppler is included.
+
+Download the source of poppler 0.16.5, unpack it to a new directory,
+enter it in a terminal and apply the patch:
+  wget http://poppler.freedesktop.org/poppler-0.16.5.tar.gz
+  tar -xvzf poppler-0.16.5.tar.gz
+  cd poppler-0.16.5
+  patch -p1 < /path/to/skm-overlay/poppler-0.16.5-bbox-extended.patch 
+
+Now build it:
+  mkdir build
+  cd build
+  cmake -D CMAKE_INSTALL_PREFIX=.. -D WITH_GObjectIntrospection=NO ..
+  make
+  make install
+
+
+-------------------------------------------------------------------
+
+Section 3. Converting Koch-Mehrin.pdf to Koch-Mehrin.xml
+
+
+First, switch back to the skm-overlay directory.
+
+Next, we'll run the patched pdftotext on Koch-Mehrin.pdf to generate
+the file Koch-Mehrin.xml (which contains information about the position, size,
+font, font size, etc. of each word in the PDF file).
+
+First, export LD_LIBRARY_PATH to make sure pdftotext uses the correct libraries:
+  export LD_LIBRARY_PATH=/path/to/poppler-0.16.5/lib
+
+Then run pdftotext:
+  /path/to/poppler-0.16.5/bin/pdftotext -bbox-extended -xmlmeta -enc UTF-8 Koch-Mehrin.pdf
+
+Ignore any errors about "Invalid Font Weight" or similar messages.
+If it worked correctly, the previous command should have created
+a file called Koch-Mehrin.xml.
+
+
+-------------------------------------------------------------------
+
+Section 4. Load the current data from VroniPlag Wiki
+
+
+** note **
+If you later want to create an updated version of the overlay PDF,
+re-start at this step.
+** end note **
+
+In skm-overlay, run:
+  php buildcache.php
+
+This will download the fragments, sources and fragment types from the Wiki.
+
+
+-------------------------------------------------------------------
+
+Section 5. Build the overlay PDF
+
+
+In skm-overlay, run:
+  php skm-overlay.php
+  pdflatex overlay-file.tex
+  pdftk Koch-Mehrin.pdf multistamp overlay-file.pdf output Koch-Mehrin-farbig.pdf
+
+Congratulations, you're done! Now open Koch-Mehrin-farbig.pdf and enjoy...
