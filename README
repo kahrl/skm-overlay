@@ -68,7 +68,7 @@ Now build it:
 
 -------------------------------------------------------------------
 
-Section 3. Converting Koch-Mehrin.pdf to Koch-Mehrin.xml
+Section 4. Converting Koch-Mehrin.pdf to Koch-Mehrin.xml
 
 
 First, switch back to the skm-overlay directory.
@@ -90,7 +90,7 @@ a file called Koch-Mehrin.xml.
 
 -------------------------------------------------------------------
 
-Section 4. Load the current data from VroniPlag Wiki
+Section 5. Load the current data from VroniPlag Wiki
 
 
 ** note **
@@ -106,7 +106,7 @@ This will download the fragments, sources and fragment types from the Wiki.
 
 -------------------------------------------------------------------
 
-Section 5. Build the overlay PDF
+Section 6. Build the overlay PDF
 
 
 In skm-overlay, run:
