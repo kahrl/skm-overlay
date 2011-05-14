@@ -1015,15 +1015,15 @@ class ParagraphHighlighter extends Highlighter {
 		$isNewLine = false;
 		if ($this->count != 0) {
 			$epsilon = 0.01;  // in mm
-			assert($yMin >= $this->yMin - $epsilon);
-			if ($yMin < $this->yMin) {
-				$yMin = $this->yMin;
-			} else if ($yMin > $this->yMax + $epsilon) {
+			if ($yMin > $this->yMax + $epsilon) {
 				$isNewLine = true;
 			} else {
 				assert($xMin >= $this->xLast - $epsilon);
+				assert($yMin >= $this->yMin - $epsilon);
 				if ($xMin < $this->xLast)
 					$xMin = $this->xLast;
+				if ($yMin < $this->yMin)
+					$yMin = $this->yMin;
 			}
 		}
 		if ($xMax < $xMin) $xMax = $xMin;
