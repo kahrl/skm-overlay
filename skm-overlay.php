@@ -1021,7 +1021,7 @@ class ParagraphHighlighter extends Highlighter {
 			} else if ($yMin > $this->yMax + $epsilon) {
 				$isNewLine = true;
 			} else {
-				assert($xMin >= $this->xMin - $epsilon);
+				assert($xMin >= $this->xLast - $epsilon);
 				if ($xMin < $this->xLast)
 					$xMin = $this->xLast;
 			}
