@@ -1462,7 +1462,7 @@ function lookForSimilarText($textpage, $linestart, $lineend, $needle) {
 
 # Cache laden
 if(!file_exists('cache')) {
-	print "Fehler: Cache existiert nicht! 'make cache' ausgefuehrt?\n";
+	print "Fehler: Cache existiert nicht! 'php buildcache.php' ausgefuehrt?\n";
 	exit(1);
 }
 $cache = unserialize(file_get_contents('cache'));
