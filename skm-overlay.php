@@ -1367,7 +1367,7 @@ function lookForSimilarText($textpage, $linestart, $lineend, $needle) {
 	# Remove unneeded text fragments from the haystack
 	$haystack = $textpage->words;
 	# FIXME: Koch-Mehrin.pdf is very broken, this code
-	# handles the problem it somewhat...
+	# handles the problem somewhat...
 	if (kochMehrinMustFilter($textpage)) {
 		if ($linestart <= 100) {
 			# Looking for non-footnotes, remove footnote words
